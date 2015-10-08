@@ -1,0 +1,24 @@
+{% extends 'general/base.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block inside_base %}
+    {% url 'iotshm_dashboard:dashboard' as dashboard %}
+    <a class="btn btn-primary" href="{{ dashboard }}">
+        <span class="pull-left glyphicon glyphicon-chevron-left"></span>
+        <span class="pull-left glyphicon glyphicon-chevron-left"></span>
+{#        <strong>Go Back</strong>#}
+    </a>
+    <div style="padding-left: 50px;padding-right: 50px">
+    <h2>
+        We are a Georgia Tech senior design group in the school of Computer and Electrical Engineering.
+    </h2></br>
+    <h3>Meet our team:</h3>
+    <h3>Reinaldo Cruz: Computer Engineering</h3>
+    <h3>Rasha El-Jaroudi: Computer Engineering</h3>
+    <h3>Maggie Fitzharris: Electrical Engineering</h3>
+    <h3>Julie Freeman: Computer Engineering</h3>
+    <h3>Douglas Sigelbaum: Computer Engineering</h3>
+    </div>
+{% endblock %}

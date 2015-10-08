@@ -1,0 +1,51 @@
+{% extends 'general/sidebar.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block nextto_sidebar %}
+    <h2>{{user.first_name}}'s Active Buildings:</h2></br>
+     {% for building in buildings %}
+{#        {% if building.manager == user or user.username == 'admin' %}#}
+           <div class="col-lg-4 col-md-4 col-sm-6">
+{#               <div class="panel panel-success">#}
+               <div class="panel panel-primary">
+{#               <div class="panel panel-danger">#}
+                   <div class="panel-heading">
+                       <div class="row">
+                           <div class="col-xs-3">
+                               <span style="font-size: 40px" class="glyphicon glyphicon-tasks 5x"></span></br></br>
+                           </div>
+                           <div class="col-xs-9 text-right">
+                                <div style="font-size: 40px">{{ building.number }}</div>
+                                <div>{{ building.name }}</div>
+                           </div>
+                       </div>
+                       <div class="row">
+                            <div class="col-xs-5 pull-right"></br></br>
+{#                                <div class="panel text-center" style="border-color:white; background-color: darkred; color: white; font-size: 25px;">Unhealthy</div>#}
+                                <div class="panel text-center"
+                                     style="border-color:white; background-color: limegreen; color: white; font-size: 25px;">
+                                    Healthy
+                                </div>
+                            </div>
+                           <div class="col-xs-7">
+                               </br><div style="font-size: 20px">{{ building.address }}</div>
+                               <div style="font-size: 20px">{{ building.city }}, {{ building.state }}</div>
+                               <div style="font-size: 20px">{{ building.zipcode }}</div>
+                           </div>
+                       </div>
+                   </div>
+{#                   <a href="{{ building.number }}/">#}
+                   <a href="{{ building.number }}/real_time/">
+                       <div class="panel-footer">
+                           <span class="pull-left">View Details</span>
+                           <span class="pull-right"><i class="glyphicon glyphicon-chevron-right"></i></span>
+                           <div class="clearfix"></div>
+                       </div>
+                   </a>
+               </div>
+           </div>
+{#        {% endif %}#}
+     {% endfor %}
+{% endblock %}

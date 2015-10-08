@@ -1,0 +1,73 @@
+{% extends 'general/header_footer.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block inside_headerfooter %}
+    <div class="col-lg-2 col-md-3 col-sm-3 sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-xs navbar-brand">Navigate</span>
+        </div>
+        <div class="sidebar navbar-collapse collapse sidebar-navbar-collapse">
+          <p></p>
+          <div class="list-group">
+              {% url 'iotshm_dashboard:dashboard' as dashboard %}
+              {% url 'iotshm_dashboard:change_password' as change_password %}
+              {% url 'iotshm_dashboard:my_buildings' as my_buildings %}
+              <a {#Dashboard#}
+                  class="list-group-item{% if request.path == dashboard %} active{% endif %}"
+                  href="{{ dashboard }}">Dashboard
+              </a>
+{#              <a type="button" {#My Buildings - Details#}
+{#                  class="list-group-item{% if request.path == my_buildings %} active{% endif %}"#}
+{#                  href="{{ my_buildings }}">My Buildings#}
+{#              </a>#}
+              {% for building in buildings %}
+                  {% url 'iotshm_dashboard:real_time' building.number as real_time %}
+                  {% url 'iotshm_dashboard:building_info' building.number as building_info %}
+                  {% url 'iotshm_dashboard:long_term' building.number as long_term %}
+                  {% url 'iotshm_dashboard:sensors' building.number as sensors %}
+                  <a
+                      class="list-group-item{% if building == curr_building %} active{% endif %}"
+                      {% if building == curr_building %}id = "active_building"{% endif %} value="{{ curr_building.number }}"
+{#                      href="{{ building_info }}">Building #{{ building.number }}#}
+                        href="{{ real_time }}">Building #{{ building.number }}
+                      <span class="pull-right glyphicon glyphicon-chevron-{% if building == curr_building %}down{% else %}right{% endif %}"></span>
+                  </a>
+                  {% if request.path == real_time or request.path == long_term or request.path == building_info or request.path == sensors %}
+                      {% if building == curr_building %}
+                          <a style="font-size:12px"
+                              class="list-group-item{% if request.path == real_time %} active{% endif %}"
+                              href="{{ real_time }}">{% bootstrap_icon "play"   %}  Real Time Analysis
+                          </a>
+                          <a style="font-size:12px"
+                              class="list-group-item{% if request.path == long_term %} active{% endif %}"
+                              href="{{ long_term }}">{% bootstrap_icon "time" %}  Long Term Trends
+                          </a>
+                          <a style="font-size:12px"
+                              class="list-group-item{% if request.path == sensors %} active{% endif %}"
+                              href="{{ sensors }}">{% bootstrap_icon "info-sign" %}  Sensors
+                          </a>
+                      {% endif %}
+                  {% endif %}
+              {% endfor %}
+              <a type="button"  href="" class="list-group-item disabled">Account</a>
+              <a
+                  class="list-group-item{% if request.path == change_password %} active{% endif %}"
+                  href="{{ change_password }}">Change Password
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-md-9 col-sm-9" style="overflow:scroll;height:100%;background-color:rgba(255, 255, 255, 0.5)">
+        {% block nextto_sidebar %}{% endblock %}
+    </div>
+{% endblock %}

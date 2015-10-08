@@ -1,0 +1,15 @@
+{% extends 'general/header_footer.html' %}
+{% load bootstrap3 %}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+<link href="{{ STATIC_URL }}style.css" rel="stylesheet" type="text/css"/>
+
+{% block inside_headerfooter %}
+    </br><hr />
+     <div class="row" id="banner">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" align="left" style="margin-top: 40pt; margin-bottom: 40pt">
+            {% block inside_base %}{% endblock %}
+        </div>
+    </div>
+    <hr />
+{% endblock %}

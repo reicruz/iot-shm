@@ -1,0 +1,11 @@
+{% extends 'general/sidebar.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block nextto_sidebar %}
+    <h2>{{curr_building.name}}</h2></br>
+    <h4>{{curr_building.address}}</h4>
+    <h4>{{curr_building.city}}, {{curr_building.state}}</h4>
+    <h4>{{curr_building.zipcode}}</h4>
+{% endblock %}

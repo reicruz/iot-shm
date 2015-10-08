@@ -1,0 +1,14 @@
+{% extends user.is_authenticated|yesno:"general/sidebar.html,general/base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% if user.is_authenticated %}
+    {% block nextto_sidebar %}
+    </br><h2 align="center">Welcome {{ user.first_name }}!</h2>
+    {% endblock %}
+{% else %}
+    {% block inside_base %}
+    <h2 align="center">Welcome to IoT SHM Dashboard! Please login.</h2>
+    {% endblock %}
+{% endif %}

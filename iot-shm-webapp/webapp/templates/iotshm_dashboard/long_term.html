@@ -1,0 +1,14 @@
+{% extends 'general/sidebar.html' %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load static %}
+
+{% block nextto_sidebar %}
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="{% static "js/longterm_graph.js" %}"></script>
+
+    <h2>{{curr_building.name}} - Long Term Trends</h2></br>
+    <div id="long-term-chart" style="min-width: 310px; min-height:400px; margin: 0 auto"></div>
+{% endblock %}
